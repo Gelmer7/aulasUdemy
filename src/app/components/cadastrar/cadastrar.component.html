@@ -4,37 +4,48 @@
     </div>
 </div>
 
-<div class="col mt-5 mr-5 ml-5">
-    <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="guardar()">
-        <div class=" form-group row ">
-            <label class="col-sm-2 col-form-label ">Titulo do Curso</label>
-            <div class="col-8 ">
-                <input type="text " class="form-control " placeholder="Titulo" formControlName="titulo">
-            </div>
-        </div>
-
-        <hr>
-
-        <div *ngFor="let item of lista">
-            <div class="form-group row ">
-                <label class="col-sm-2 col-form-label ">Titulo da Seção </label>
-                <div class="col-8 ">
-                    <input type="text " class="form-control " placeholder="Seção" formControlName="secao">
-                </div>
-            </div>
+<div class="row mt-5">
+    <div class="col">
+        <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="guardar()">
             <div class=" form-group row ">
-                <label class="col-sm-2 col-form-label ">Capitulos</label>
-                <div class="col-8 ">
-                    <textarea class="form-control" placeholder="..." formControlName="capitulo" style="height: 200px"></textarea>
+                <div class="col">
+                    <label >Titulo do Curso</label>
+                    <input type="text " class="form-control " placeholder="Titulo" formControlName="titulo">
                 </div>
             </div>
-
-        </div>
-
-        <div class="row ">
-            <div class="col-10 text-right ">
-                <button type="submit " class="btn btn-primary ">Cadastrar</button>
+            <hr>
+            <div *ngFor="let secao of secoes; let i=index" >
+                <div class="form-group row ">
+                    <label class="col-sm-2 col-form-label ">Seção:
+                        <span class="badge badge-pill badge-info">{{secao}}</span> </label>
+                    <div class="col-10 ">
+                        <input type="text " class="form-control " placeholder="Seção" formControlName="secao[i]">
+                    </div>
+                    
+                </div>
+                <div class=" form-group row ">
+                    <label class="col-sm-2 col-form-label ">Capitulos: </label>
+                    <div class="col-10 ">
+                        <textarea class="form-control" placeholder="..." formControlName="capitulo[i]" style="height: 100px"></textarea>
+                    </div>
+                </div>
+                <hr class="mt-3">
             </div>
-        </div>
-    </form>
+            <div class="col text-right">
+                <button type="button" class="btn btn-outline-danger " (click)="eliminarSecao()"> <i class="far fa-trash-alt"></i>
+                </button>
+                <button type="button" class="btn btn-outline-primary ml-1 " (click)="agregarSecao()"> <i class="far fa-plus"></i>
+                </button>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <button 
+                        type="submit" 
+                        class="btn btn-outline-primary btn-block">
+                        Registrar
+                        </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CadastrarComponent } from './components/cadastrar/cadastrar.component';
 import { AboutComponent } from './components/about/about.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { TemporizadorComponent } from './components/temporizador/temporizador.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     HomeComponent,
     CadastrarComponent,
     AboutComponent,
-    NavbarComponent
+    NavbarComponent,
+    TemporizadorComponent
   ],
   imports: [
     BrowserModule,
