@@ -11,6 +11,8 @@ import { AulasService,Secao, Aulas } from 'src/app/services/aulas.service';
 export class CadastrarComponent implements OnInit {
   formulario:FormGroup
   aulas:Aulas
+  contador:number = 1
+
   constructor( private fb:FormBuilder,
                 private http:HttpClient,
                 private aulasService:AulasService) {
@@ -26,8 +28,9 @@ export class CadastrarComponent implements OnInit {
   } 
 
   agregarSecao(){
+    let tit = 'Parte: ' + this.contador++
     this.secao.push(this.fb.group({
-      titulo:   ['Parte ',[Validators.required]],
+      titulo:   [tit,[Validators.required]],
       capitulos:    this.fb.array([['1. introdução\n2. resumen\n3. conclusão\n4. Fin']])
     })
     )

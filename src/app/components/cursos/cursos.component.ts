@@ -10,17 +10,33 @@ import { map } from 'rxjs/operators';
 })
 export class CursosComponent implements OnInit {
   aulas:Aulas[]=[]
-  constructor( private aulasService:AulasService) { }
+  tituloCursos:string[]
+  nCursos:number
+  secao:any
+  ver = false
+
+  constructor( private aulasService:AulasService) { 
+    this.getTodosCursos()
+  }
 
   ngOnInit(): void {
+  }
+  
+
+  getTodosCursos(){
     this.aulasService.getCursos()
     .subscribe(resp =>{
       this.aulas = resp
+      this.nCursos = this.aulas.length
       console.log(this.aulas);
     })
-    
   }
 
+  verCapitulos(s:any){
+    console.log(s);
+    this.secao = s
+    this.ver = true
+  }
 
 
 
