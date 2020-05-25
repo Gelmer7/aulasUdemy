@@ -43,5 +43,5 @@ export interface Secao {
 export interface Aulas {
   id?:string
   titulo:string
-  secoes: Array<Secao>
+  secao: Array<Secao>
 }

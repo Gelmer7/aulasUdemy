@@ -10,31 +10,57 @@
             <div class=" form-group row ">
                 <div class="col">
                     <label >Titulo do Curso</label>
-                    <input type="text " class="form-control " placeholder="Titulo" formControlName="titulo">
+                    <input  type="text " 
+                            class="form-control " 
+                            placeholder="Titulo" 
+                            formControlName="titulo">
                 </div>
             </div>
             <hr>
-            <div *ngFor="let secao of secoes; let i=index" >
-                <div class="form-group row ">
-                    <label class="col-sm-2 col-form-label ">Seção:
-                        <span class="badge badge-pill badge-info">{{secao}}</span> </label>
-                    <div class="col-10 ">
-                        <input type="text " class="form-control " placeholder="Seção" formControlName="secao[i]">
+            <!-- SECAO E CAPITULOS -->
+            <div formArrayName = "secao">
+                <div *ngFor="let item of secao.controls; let i=index"  >
+                    <div >
+                        <div class="form-group" formGroupName={{i}}>
+                            <div class=" form-group row ">
+                                <label class="col-sm-2 col-form-label ">Seção:
+                                <span class="badge badge-pill badge-info"></span>{{i+1}}</label>
+                                <div class="col-8 ">
+                                    <input  type="text " 
+                                            class="form-control " 
+                                            placeholder="Seção" 
+                                            formControlName="titulo"
+                                            >
+                                </div>
+                            </div>
+                            <div formArrayName="capitulos">
+                                <div class=" form-group row ">
+                                    <label class="col-sm-2 col-form-label ">Capitulos: </label>
+                                    <div class="col-8 ">
+                                        <textarea   class="form-control" 
+                                                    placeholder="..." 
+                                                    style="height: 100px"
+                                                    [formControlName]="0"></textarea>
+                                    </div>
+                                    <div class=" col-2 text-center"> 
+                                        <button type="button" class="btn btn-outline-danger " (click)="eliminarSecao(i)"> <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        <hr class="mt-3">
                     </div>
-                    
                 </div>
-                <div class=" form-group row ">
-                    <label class="col-sm-2 col-form-label ">Capitulos: </label>
-                    <div class="col-10 ">
-                        <textarea class="form-control" placeholder="..." formControlName="capitulo[i]" style="height: 100px"></textarea>
-                    </div>
-                </div>
-                <hr class="mt-3">
             </div>
+ 
+            <!-- FIN SECAO E CAPITULOS -->
             <div class="col text-right">
-                <button type="button" class="btn btn-outline-danger " (click)="eliminarSecao()"> <i class="far fa-trash-alt"></i>
-                </button>
                 <button type="button" class="btn btn-outline-primary ml-1 " (click)="agregarSecao()"> <i class="far fa-plus"></i>
+                Agregar
                 </button>
             </div>
             <div class="row mt-3">
@@ -49,3 +75,10 @@
         </form>
     </div>
 </div>
+
+<pre>
+    formulario: {{formulario.valid}}
+    status: {{formulario.status}}
+
+    {{formulario.value | json}}
+</pre>
